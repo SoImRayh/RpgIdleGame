@@ -1,26 +1,23 @@
 package dev.rayh.game.services;
 
-import java.time.LocalDateTime;
-
-import dev.rayh.game.domain.battle.Battle;
+import dev.rayh.game.domain.battle.BattleContext;
 import dev.rayh.game.domain.battle.BattleEventInternal;
 
 public class BattleService {
 
-    public void runBattle(Battle b) {
+    public void runBattle(BattleContext b) {
         System.out.println("iniciando a batalha");
-        processUntil(b, LocalDateTime.now());
     }
 
-    public void processUntil(Battle battle, long now) {
-        while (!battle.getTimeline().isEmpty() && battle.getTimeline().peek().getExecuteAt() <= now) {
-            BattleEventInternal event = battle.getTimeline().poll();
-            handleEvent(battle, event);
+    public void processUntil(BattleContext battleContext, long now) {
+        while (!battleContext.getTimeline().isEmpty() && battleContext.getTimeline().peek().getExecuteAt() <= now) {
+            BattleEventInternal event = battleContext.getTimeline().poll();
+            handleEvent(battleContext, event);
         }
-        battle.setLastProcessedTime(now);
+        battleContext.setTempoAtual(now);
     }
 
-    private void handleEvent(Battle b, BattleEventInternal event){
+    private void handleEvent(BattleContext b, BattleEventInternal event){
 
     }
 

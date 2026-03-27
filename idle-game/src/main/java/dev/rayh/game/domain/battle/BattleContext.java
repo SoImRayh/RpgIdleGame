@@ -6,12 +6,13 @@ import dev.rayh.game.domain.Champion;
 import lombok.Data;
 
 @Data
-public class Battle {
+public class BattleContext {
     private int id;
-    private String aaa;
-    private long lastProcessedTime;
+    private boolean isHappening = true;
+    private long tempoAtual;
     private BattleUnit c1;
     private BattleUnit c2;
+    private int energy = 0;
 
     private  PriorityQueue<BattleEventInternal> timeline;
 
@@ -32,5 +33,9 @@ public class Battle {
             default:
                 break;
         }
+    }
+
+    public void log(long time, String message){
+        System.out.println( time + "::"+message);
     }
 }
