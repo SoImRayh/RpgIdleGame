@@ -15,15 +15,7 @@ public class TempBuilder {
         hero.setId(name_id.concat(String.valueOf(random.nextInt())));
         return hero;
     }
-/**  0: melee, 1: ranged*/
-    private static Skill getAutoAttack(int meleeOrRanged){
 
-        Effect effect = new Effect(EffectType.DAMAGE, 1.0, 0, 1, StatType.ATK);
-
-        Skill skill = new Skill("auto_atack", 0, 1000, SkillType.DAMAGE, List.of(effect));
-
-        return skill;
-    }
 
     public static List<Hero> getTeam(String teamName){
         List<Hero> l = new ArrayList<>(5);

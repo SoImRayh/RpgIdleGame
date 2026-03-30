@@ -2,6 +2,8 @@ package dev.rayh.game.domain;
 
 import java.util.List;
 
+import dev.rayh.game.engine.BattleContext;
+import dev.rayh.game.runtime.BattleUnit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,10 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Skill {
-    private String name;
+public abstract class Skill {
+    private String id;
+    private long cooldown;
     private int energyCost;
-    private int cooldown;
     private SkillType type;
     private List<Effect> effects;
+
+    public abstract void execute(BattleContext context, BattleUnit caster);
 }

@@ -21,15 +21,13 @@ public class AutoAttackEvent extends BattleEvent {
 
     @Override
     public void execute(BattleContext ctx) {
+
         for (BattleUnit u : this.target){
             if (!attacker.isAlive() || !u.isAlive())
                 return;
-            System.out.printf(
-                    "[%s]: [%s] atacando [%s]\n",
-                    ctx.getNow(),
-                    attacker.getInstanceId().concat(" ".concat(String.valueOf(attacker.getCurrentHp()))),
-                    u.getInstanceId().concat(" ".concat(String.valueOf(u.getCurrentHp()))));
             DamageSystem.applyBasicAttackDamage(ctx, attacker, u);
+            //todo implementar uma alteração de target quando o alvo morre, quando morre remover eventos futuros que realacionam esse heroi
+            //if (!u.isAlive())
         }
         //schedule next aa todo, implements next aa using speed as variable
         long nextAA = System.currentTimeMillis() + 1000;

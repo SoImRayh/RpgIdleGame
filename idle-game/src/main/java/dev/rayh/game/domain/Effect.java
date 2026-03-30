@@ -1,16 +1,15 @@
 package dev.rayh.game.domain;
 
+import dev.rayh.game.engine.BattleContext;
+import dev.rayh.game.runtime.BattleUnit;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
 @AllArgsConstructor
-public class Effect {
-    EffectType type; // DAMAGE, HEAL, APPLY_BUFF
+public abstract class Effect {
+    private long duration;
 
-    double multiplier; // ex: 1.2x ATK
-
-    int duration; // para buffs/debuffs
-
-    double chance; // % de aplicar
-
-    StatType scalingStat; // ATK, DEF, HP
+    public abstract void onApply(BattleContext ctx, BattleUnit target);
+    public abstract void onExpire(BattleContext ctx, BattleUnit target);
 }
