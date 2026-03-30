@@ -1,4 +1,4 @@
-package dev.rayh.game.domain;
+package dev.rayh.game.domain.hero;
 
 import lombok.AllArgsConstructor;
 

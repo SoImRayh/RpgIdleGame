@@ -12,6 +12,6 @@ public class App
     {
         System.out.println("iniciando!");
         BattleEngine engine = new BattleEngine();
-        engine.start();
+        engine.setup();
     }
 }

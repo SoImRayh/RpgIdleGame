@@ -1,8 +1,10 @@
 package dev.rayh.game.domain.battle;
 
+import dev.rayh.TempBuilder;
+import dev.rayh.game.domain.hero.Hero;
 import lombok.Data;
 
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.List;
 
 @Data
 public class BattleEngine {
@@ -12,11 +14,24 @@ public class BattleEngine {
     public BattleEngine(){
     }
 
+    public void setup(){
+        Hero h1,h2;
+        h1 = TempBuilder.getMeleeWithJustAutoAttack("h1");
+        h2 = TempBuilder.getMeleeWithJustAutoAttack("h2");
+
+        System.out.println("char 1: ".concat(h1.toString()));
+        System.out.println("char 2: ".concat(h2.toString()));
+        this.battleContext = new BattleContext(h1, h2);
+    }
+
 
     public void start(){
         try {
-            BattleContext b = new BattleContext();
-            EventScheduler scheduler = new EventScheduler(b);
+            EventScheduler scheduler = new EventScheduler(battleContext);
+
+            // team 1
+
+            //team 2
 
             scheduler.schedule(new SpawnEvent(), 10500);
             scheduler.schedule(new AutoAttackEvent(), 1000);
@@ -27,8 +42,10 @@ public class BattleEngine {
         }
     }
 
-
+    private List<EffectResult> execute(U)
 }
+
+
 
 interface EventoDeBatalha{
     void executar(BattleContext battleContext, EventScheduler scheduler);
@@ -37,10 +54,8 @@ interface EventoDeBatalha{
 class AutoAttackEvent implements EventoDeBatalha {
     @Override
     public void executar(BattleContext battleContext, EventScheduler scheduler) {
-        battleContext.setEnergy(battleContext.getEnergy() + 10);
-        battleContext.log(System.currentTimeMillis(), "atacou causando dano e energia: " + battleContext.getEnergy());
-        if (battleContext.getEnergy() >= 100)
-            scheduler.schedule(new UltimateCastEvent(),0);
+//        battleContext.log(System.currentTimeMillis(), "atacou causando dano e energia: " + battleContext.getEnergy());
+
         scheduler.schedule(new AutoAttackEvent(), attackSpeed);
     }
 
@@ -52,11 +67,11 @@ class UltimateCastEvent implements EventoDeBatalha {
 
     @Override
     public void executar(BattleContext battleContext, EventScheduler scheduler) {
-        if (battleContext.getEnergy() >= 100){
-            battleContext.setEnergy(0);
-            battleContext.log(System.currentTimeMillis(), "::Usando ultimate!");
-
-        }
+//        if (battleContext.getEnergy() >= 100){
+//            battleContext.setEnergy(0);
+//            battleContext.log(System.currentTimeMillis(), "::Usando ultimate!");
+//
+//        }
     }
 }
 
