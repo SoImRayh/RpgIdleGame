@@ -1,8 +1,8 @@
 package dev.rayh.game.domain.battle;
 
 import dev.rayh.TempBuilder;
+import dev.rayh.game.engine.BattleContext;
 import junit.framework.TestCase;
-import org.junit.Test;
 import org.openjdk.jol.vm.VM;
 
 public class BattleContextTest extends TestCase {

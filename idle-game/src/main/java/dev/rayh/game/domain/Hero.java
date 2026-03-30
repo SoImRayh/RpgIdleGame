@@ -1,4 +1,4 @@
-package dev.rayh.game.domain.hero;
+package dev.rayh.game.domain;
 
 import java.util.List;
 
@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Hero {
+    private String id;
     private String name;
-    private Stats stats;
+    private Stats baseStats;
     private List<Skill> skills;
 }

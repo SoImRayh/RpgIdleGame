@@ -1,4 +1,4 @@
-package dev.rayh.game.domain.hero;
+package dev.rayh.game.domain;
 
 import java.util.List;
 

@@ -1,6 +1,12 @@
 package dev.rayh;
 
-import dev.rayh.game.domain.battle.BattleEngine;
+
+import dev.rayh.game.domain.Hero;
+import dev.rayh.game.engine.BattleContext;
+import dev.rayh.game.engine.BattleEngine;
+import dev.rayh.game.engine.BattleInitializer;
+
+import java.util.List;
 
 /**
  * Hello world!
@@ -10,8 +16,15 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println("iniciando!");
         BattleEngine engine = new BattleEngine();
-        engine.setup();
+
+        System.out.println("iniciando!");
+        List<Hero> ta = TempBuilder.getTeam("TA");
+        List<Hero> tB = TempBuilder.getTeam("TB");
+
+        BattleContext context = BattleInitializer.init(ta, tB);
+
+        engine.run(context);
+
     }
 }
