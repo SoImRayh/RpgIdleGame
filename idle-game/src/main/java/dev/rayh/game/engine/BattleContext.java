@@ -36,13 +36,5 @@ public class BattleContext {
         if (e.getExecuteAt() <= MAX_DURATION)
             this.timeline.add(e);
     }
-
-    public void log(long time, String message){
-        System.out.println( time + "::"+message);
-    }
 }
 
-enum BattleStatus {
-    ONGOING,
-    FINISHED
-}
