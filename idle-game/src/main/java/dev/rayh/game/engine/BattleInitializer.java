@@ -12,15 +12,15 @@ public class BattleInitializer {
 
         BattleContext ctx = new BattleContext();
 
-        ctx.setTA(createUnits(teamA));
-        ctx.setTB(createUnits(teamB));
+        ctx.setTeamA(createUnits(teamA));
+        ctx.setTeamB(createUnits(teamB));
 
         // agendar ataques iniciais
-        for (BattleUnit unit : ctx.getTA()) {
+        for (BattleUnit unit : ctx.getTeamA()) {
             ctx.scheduleEvent(new AutoAttackEvent(unit, pickTargets(ctx, unit), 0));
         }
 
-        for (BattleUnit unit : ctx.getTB()) {
+        for (BattleUnit unit : ctx.getTeamB()) {
             ctx.scheduleEvent(new AutoAttackEvent(unit, pickTargets(ctx, unit), 0));
         }
 
@@ -28,10 +28,10 @@ public class BattleInitializer {
     }
 
     private static List<BattleUnit> pickTargets(BattleContext ctx, BattleUnit unit) {
-        if (ctx.getTA().contains(unit)){
-            return List.of(ctx.getTB().get(0));
+        if (ctx.getTeamA().contains(unit)){
+            return List.of(ctx.getTeamB().get(0));
         }else {
-            return List.of(ctx.getTA().get(0));
+            return List.of(ctx.getTeamA().get(0));
         }
     }
 

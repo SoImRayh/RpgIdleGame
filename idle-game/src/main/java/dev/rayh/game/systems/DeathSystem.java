@@ -18,8 +18,8 @@ public class DeathSystem {
         }
 
         static void checkBattleEnd(BattleContext ctx) {
-            boolean teamADead = ctx.getTA().stream().noneMatch(BattleUnit::isAlive);
-            boolean teamBDead = ctx.getTB().stream().noneMatch(BattleUnit::isAlive);
+            boolean teamADead = ctx.getTeamA().stream().noneMatch(BattleUnit::isAlive);
+            boolean teamBDead = ctx.getTeamB().stream().noneMatch(BattleUnit::isAlive);
 
             if (teamADead || teamBDead) {
                 ctx.setFinished(true);
