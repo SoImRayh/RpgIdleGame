@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class BattleContext {
 
+    private final long MAX_DURATION = 120000L; //max duration of the battles : 2 minutes.
     private boolean isFinished;
     private List<BattleUnit> tA;
     private List<BattleUnit> tB;
@@ -31,7 +32,9 @@ public class BattleContext {
     }
 
     public void scheduleEvent(BattleEvent e){
-        this.timeline.add(e);
+        //only schedule the event if the executeAt is less that MAX_DURATION.
+        if (e.getExecuteAt() <= MAX_DURATION)
+            this.timeline.add(e);
     }
 
     public void log(long time, String message){
