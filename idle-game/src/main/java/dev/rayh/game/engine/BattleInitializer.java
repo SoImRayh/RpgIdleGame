@@ -3,6 +3,7 @@ package dev.rayh.game.engine;
 import dev.rayh.game.domain.Hero;
 import dev.rayh.game.events.AutoAttackEvent;
 import dev.rayh.game.runtime.BattleUnit;
+import dev.rayh.game.systems.TargetSystem;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,13 +16,25 @@ public class BattleInitializer {
         ctx.setTeamA(createUnits(teamA));
         ctx.setTeamB(createUnits(teamB));
 
-        // agendar ataques iniciais
-        for (BattleUnit unit : ctx.getTeamA()) {
-            ctx.scheduleEvent(new AutoAttackEvent(unit, pickTargets(ctx, unit), 0));
-        }
 
-        for (BattleUnit unit : ctx.getTeamB()) {
-            ctx.scheduleEvent(new AutoAttackEvent(unit, pickTargets(ctx, unit), 0));
+        BattleUnit unit;
+
+        int sizeTA = ctx.getTeamA().size();
+        int sizeTB = ctx.getTeamB().size();
+
+        for (int i = 0; i <= 5 ; i++){
+            if (i < sizeTA){
+                unit = ctx.getTeamA().get(i);
+                if (unit != null){
+                    ctx.scheduleEvent(new AutoAttackEvent(unit, TargetSystem.getNextTarget(ctx, unit), ctx.getNow(), i));
+                }
+            }
+            if (i < sizeTB) {
+                unit = ctx.getTeamB().get(i);
+                if (unit != null){
+                    ctx.scheduleEvent(new AutoAttackEvent(unit, TargetSystem.getNextTarget(ctx, unit), ctx.getNow(), i));
+                }
+            }
         }
 
         return ctx;

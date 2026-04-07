@@ -9,8 +9,10 @@ import java.util.Random;
 public class TempBuilder {
     static Random random = new Random();
     public static Hero getMeleeWithJustAutoAttack(String name_id){
+        Random r = new Random();
+
         Hero hero = new Hero();
-        hero.setBaseStats(new Stats(100,100,100,10,0.1,2));
+        hero.setBaseStats(new Stats((r.nextInt( 100) + 100),100,100,r.nextInt(1500),0.1,2));
         hero.setName(name_id);
         hero.setId(name_id.concat(String.valueOf(random.nextInt())));
         return hero;
@@ -25,6 +27,13 @@ public class TempBuilder {
             l.add(getMeleeWithJustAutoAttack(name));
         }
         l.get(0).setName("Tank team "+ teamName);
+
+        return l;
+    }
+
+    public static List<Hero> getTeamWithOnlyOneHero(String teamName){
+        List<Hero> l = new ArrayList<>(5);
+        l.add(getMeleeWithJustAutoAttack(teamName));
 
         return l;
     }

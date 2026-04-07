@@ -19,8 +19,8 @@ public class App
         BattleEngine engine = new BattleEngine();
 
         System.out.println("iniciando!");
-        List<Hero> ta = TempBuilder.getTeam("TA");
-        List<Hero> tB = TempBuilder.getTeam("TB");
+        List<Hero> ta = TempBuilder.getTeamWithOnlyOneHero("TA");
+        List<Hero> tB = TempBuilder.getTeamWithOnlyOneHero("TB");
 
         BattleContext context = BattleInitializer.init(ta, tB);
 

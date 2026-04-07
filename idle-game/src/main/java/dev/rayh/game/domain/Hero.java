@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class Hero {
     private String id;
     private String name;
+    private int stars;
     private Stats baseStats;
     private List<Skill> skills;
 }
